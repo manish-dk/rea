@@ -12,7 +12,8 @@ public class Person {
 	private String name;
 	private String role;
 	private String password;
-//	private CV cvs;
+	private String cv;
+	private String state;
 	
 	public String getId() {
 		return id;
@@ -44,12 +45,19 @@ public class Person {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public CV getCvs() {
-//		return cvs;
-//	}
-//	public void setCvs(CV cvs) {
-//		this.cvs = cvs;
-//	}
+	public String getCv() {
+		return cv;
+	}
+	public void setCv(String cv) {
+		this.cv = cv;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+
 
 	
 }
