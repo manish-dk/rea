@@ -44,9 +44,9 @@ public class PersonController {
 		return person;
 	}
 	
-	@RequestMapping(value="/people/{id}/n",method=RequestMethod.POST)
-	public String updateState(@PathVariable("id") String id, @RequestBody String state) {
-		repository.findById(id).get().setState(state);
-		return state;
-	}
+//	@RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
+//	  public Person updateState(@PathVariable String id, @RequestBody Person person) {
+//	    repository.save(person);
+//	    return person;
+//	  }
 }
