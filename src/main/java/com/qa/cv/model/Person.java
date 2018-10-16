@@ -1,4 +1,4 @@
-package hello;
+package com.qa.cv.model;
 
 import java.util.List;
 

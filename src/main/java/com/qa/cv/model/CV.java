@@ -1,4 +1,4 @@
-package hello;
+package com.qa.cv.model;
 
 public class CV {
 

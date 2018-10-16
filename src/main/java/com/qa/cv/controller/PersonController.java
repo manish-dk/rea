@@ -1,4 +1,4 @@
-package hello;
+package com.qa.cv.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.qa.cv.model.Person;
+import com.qa.cv.repo.PersonRepository;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
