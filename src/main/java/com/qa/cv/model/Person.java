@@ -15,6 +15,21 @@ public class Person {
 	private String cv;
 	private String state;
 	
+	public Person()
+	{
+		
+	}
+	
+	public Person(String email, String name, String role, String password, String cv, String state) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.role = role;
+		this.password = password;
+		this.cv = cv;
+		this.state = state;
+	}
+
 	public String getId() {
 		return id;
 	}
