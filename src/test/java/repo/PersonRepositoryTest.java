@@ -41,7 +41,7 @@ public class PersonRepositoryTest {
 		entityManager.persist(model1); 
 		entityManager.flush();
 		System.out.println(model1.getName());
-		assertEquals("Lucy Hamilton", myRepo.findByName(model1.getName()));
+		assertEquals("Lucy Hamilton", myRepo.findByEmail(model1.getName()));
 	}
 	
 	//@After

@@ -12,6 +12,6 @@ import com.qa.cv.model.Person;
 @RepositoryRestResource(collectionResourceRel = "people", path = "people")
 public interface PersonRepository extends MongoRepository<Person, String> {
 
-	List<Person> findByName(@Param("name") String name);
+	List<Person> findByEmail(@Param("email") String email);
 
 }
