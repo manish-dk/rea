@@ -36,12 +36,16 @@ public class PersonController {
 
 		InputStream inputStream = null;
 		try {
-			inputStream = new FileInputStream("C:\\Users\\Admin\\Desktop\\doc.txt");
+			inputStream = multipart.getInputStream();
+			//inputStream = new FileInputStream("C:\\Users\\Admin\\Desktop\\doc.txt");
 			gridOperations.store(inputStream, "doc.txt");
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return "fail";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (inputStream != null) {
 				try {
