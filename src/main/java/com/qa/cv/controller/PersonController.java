@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,7 +20,7 @@ import com.qa.cv.repo.PersonRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(origins = "http://192.168.1.113", maxAge=3600)
+//@CrossOrigin(origins = "http://192.168.1.113", maxAge=3600)
 @RestController
 @RequestMapping("/api")
 public class PersonController {
@@ -95,8 +97,8 @@ public class PersonController {
 	}
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String checkLogin(@RequestBody Person user) {
+	@PutMapping(value = "/login")
+	public String checkLogin(@Valid @RequestBody Person user) {
 		
 		System.out.println("sdjfjdxjfdjs");
 		
