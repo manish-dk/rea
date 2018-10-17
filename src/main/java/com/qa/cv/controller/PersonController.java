@@ -3,6 +3,8 @@ package com.qa.cv.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,4 +54,33 @@ public class PersonController {
 	public Person updateState(@PathVariable("id") String id, @RequestBody String state) {
 		return repository.save(repository.findById(id).get().setState(state));
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String checkLogin(@RequestBody String email, @RequestBody String password) {
+		
+		Person p = (Person) repository.findByEmail(email);
+		
+		if (p.getPassword().equals(password)) {
+			return p.getRole();
+		}
+		
+		return "NOTFOUND";
+	}
+	
+	
+//	@PostMapping("/upload")
+//	public String singleFileUpload(@RequestParam("file") MultipartFile multipart, @RequestParam("email") String email) {
+//	    try {
+//	        Person demoDocument = new Person();
+//	        demoDocument.setEmail(email);
+//	        demoDocument.setDocType("pictures");
+//	        demoDocument.setFile(new Binary(BsonBinarySubType.BINARY, multipart.getBytes()));
+//	        mongoTemplate.insert(demoDocument);
+//	        System.out.println(demoDocument);
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	        return "failure";
+//	    }
+//	    return "success";
+//	}
 }
