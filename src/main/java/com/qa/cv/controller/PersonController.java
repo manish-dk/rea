@@ -1,23 +1,65 @@
 package com.qa.cv.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.qa.cv.SpringMongoConfig;
 import com.qa.cv.model.Person;
 import com.qa.cv.repo.PersonRepository;
-
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class PersonController {
 	@Autowired
 	private PersonRepository repository;
+	
+	private String storeFile(MultipartFile multipart) {
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
+		GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+
+		InputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream("C:\\Users\\Admin\\Desktop\\doc.txt");
+			gridOperations.store(inputStream, "doc.txt");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "fail";
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+					return "fail";
+				}
+			}
+		}
+		return "pass";
+	}
+	
+	@PostMapping("/upload")
+	public String singleFileUpload(@RequestParam("file") MultipartFile multipart) {
+		
+		return storeFile(multipart);
+	}
 	
 	@RequestMapping(value = "/people", method = RequestMethod.GET)
 	public List<Person> getPeople() {
