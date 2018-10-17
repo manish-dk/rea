@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,6 +20,7 @@ import com.qa.cv.repo.PersonRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+//@CrossOrigin(origins = "http://192.168.1.113", maxAge=3600)
 @RestController
 @RequestMapping("/api")
 public class PersonController {
@@ -93,15 +96,19 @@ public class PersonController {
 		return repository.save(repository.findById(id).get().setState(state));
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String checkLogin(@RequestBody String email, @RequestBody String password) {
+	
+	@PutMapping(value = "/login")
+	public String checkLogin(@Valid @RequestBody Person user) {
 		
-		Person p = (Person) repository.findByEmail(email);
+		System.out.println("sdjfjdxjfdjs");
 		
-		if (p.getPassword().equals(password)) {
-			return p.getRole();
+		List<Person> p = repository.findByEmail(user.getEmail());
+		
+		for (Person o : p) {
+			if (o.getPassword().equals(user.getPassword())) {
+				return o.getRole();
+			}
 		}
-		
 		return "NOTFOUND";
 	}
 	
