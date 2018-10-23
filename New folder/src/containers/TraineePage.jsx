@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import NavbarFeatures from "./NavBarFeatures";
+import ProfilePage from "../containers/ProfilePage";
+import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
+
 // import ProfilePage from "./containers/ProfilePage";
 class TraineePage extends Component {
-  state = {};
   render() {
     return (
       <div className="TraineePage">
@@ -12,7 +14,21 @@ class TraineePage extends Component {
         />
         <div>
           <h1>**TRAINEE**</h1>
-          {/* <ProfilePage /> */}
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={6} md={4}>
+                <code>
+                  <ProfilePage />
+                </code>
+              </Col>
+
+              <Col xs={12} md={8}>
+                <code>
+                  <p>UPLOAD CV, other stuff here</p>
+                </code>
+              </Col>
+            </Row>
+          </Grid>;
         </div>
       </div>
     );

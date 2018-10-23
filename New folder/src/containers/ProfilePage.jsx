@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Table } from "react-bootstrap";
+import { Table, Image } from "react-bootstrap";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class ProfilePage extends Component {
   componentDidMount() {
     let request = new XMLHttpRequest();
 
-    request.open("GET", "http://localhost:8090/api/people");
+    request.open("GET", "http://192.168.1.117:8090/api/people");
 
     request.setRequestHeader("Content-Type", "application/json");
 
@@ -31,30 +31,45 @@ class ProfilePage extends Component {
     console.log(JSON.stringify(this.state.allPeople));
 
     return (
-      <Table id="test" bordered striped hover condensed>
+      <Table bordered striped hover condensed>
         <thead>
           <th>PROFILE</th>
         </thead>
         <tbody>
           {this.state.allPeople
-            .filter(item => item.id === "5bc9a4bc7e293b0488fee89d")
+            .filter(item => item.id === this.props.userId)
             .map(function(item, key) {
               return (
                 <div>
                   <tr key={key}>
-                    <td>
-                      <img
-                        src="https://files.ontario.ca/small-biz-advice.png"
-                        class="img-rounded"
-                        alt="Cinque Terre"
-                      />
+                    <td width="12.5%">
+                      <div>
+                        <img
+                          src="https://files.ontario.ca/small-biz-advice.png"
+                          class="img-rounded"
+                          height="200px"
+                          width="200px"
+                        />
+                      </div>
                     </td>
                   </tr>
-                  <tr key={key}>
+                  <tr>
                     <td>{item.name}</td>
                   </tr>
-                  <tr key={key}>
+                  <tr>
                     <td>{item.email}</td>
+                  </tr>
+                  <tr>
+                    <td>Preferred Role</td>
+                  </tr>
+                  <tr>
+                    <td>Preferred Location</td>
+                  </tr>
+                  <tr>
+                    <td> Trainer Contact Details </td>
+                  </tr>
+                  <tr>
+                    <td Edit Profile />
                   </tr>
                 </div>
               );
