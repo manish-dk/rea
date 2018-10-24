@@ -25,6 +25,7 @@ import NavbarFeatures from "./NavBarFeatures";
 import CryptoJS from "cryptojs";
 import Background from "../components/images/bg7.jpg";
 import NavbarSimple from "../components/NavBarSimple";
+import md5 from "react-native-md5";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class LoginPage extends Component {
 
     var user = JSON.stringify({
       email: emailstr,
-      password: password
+      password: md5.hex_md5(password+"")
     });
 
     console.log(user);

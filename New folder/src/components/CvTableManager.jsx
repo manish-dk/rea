@@ -20,23 +20,33 @@ class CvTableManager extends Component {
     var t1 = document.getElementById("1");
     var t2 = document.getElementById("2");
     var t3 = document.getElementById("3");
+    if(t1 != null){
     str = this.state.allPeople[0].files_id;
+    }
+   if(t2 != null){
     strtwo = this.state.allPeople[1].files_id;
+   }
+    if(t3 != null){
     strthree = this.state.allPeople[2].files_id;
-
+    }
+   
+    if(t1 != null){
     t1.addEventListener("click", function() {
       url = "http://192.168.1.117:8090/api/people/" + theId + "/state/" + str;
-    });
+    });}
+    
 
+       if(t2 != null){
     t2.addEventListener("click", function() {
       url =
         "http://192.168.1.117:8090/api/people/" + theId + "/state/" + strtwo;
-    });
+    });}
 
+      if(t3 != null){
     t3.addEventListener("click", function() {
       url =
         "http://192.168.1.117:8090/api/people/" + theId + "/state/" + strthree;
-    });
+    });}
 
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", url);
@@ -96,6 +106,7 @@ class CvTableManager extends Component {
   render() {
     let counter = 0;
     theId = this.props.userId;
+
     return (
       <Table bordered striped hover condensed>
         <thead>

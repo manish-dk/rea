@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CryptoJS from "cryptojs";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import NavBarAdmin from "../components/NavBarAdmin";
+import md5 from "react-native-md5";
 
 class AddUser extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class AddUser extends Component {
       email: emailstr,
       name: name,
       role: roleSelected,
-      password: passstr
+      password: md5.hex_md5(passstr+"")
     });
 
     let xhttp = new XMLHttpRequest();
