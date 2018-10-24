@@ -4,6 +4,7 @@ import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
 import TraineeTable from "../components/TraineeTable";
 import ProfilePage from "../containers/ProfilePage";
 import CvTableManager from "../components/CvTableManager";
+import NavBarAdmin from "../components/NavBarAdmin";
 
 class ManagerPage extends Component {
   constructor(props) {
@@ -54,10 +55,7 @@ class ManagerPage extends Component {
     var myId = "" + this.state.selectedId;
     return (
       <div className="ManagerPage">
-        <NavbarFeatures
-          class="p-3 mb-2 bg-dark text-white"
-          className="NavBarMain1"
-        />
+        <NavBarAdmin />
         <div>
           <h1 color="red" class="display-3">
             Training Manager Dashboard

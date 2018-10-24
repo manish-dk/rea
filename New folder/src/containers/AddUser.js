@@ -1,104 +1,131 @@
-import React, { Component } from 'react';
-import CryptoJS from 'cryptojs';
+import React, { Component } from "react";
+import CryptoJS from "cryptojs";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import NavbarFeatures from './NavBarFeatures';
+import NavBarAdmin from "../components/NavBarAdmin";
 
-class AddUser extends Component {   
+class AddUser extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      emailstr: "",
+      passstr: "",
+      name: "",
+      role: "",
+      city: "",
+      redirectPath: "",
+      isAuthenticated: false
+    };
+  }
 
-    handleSubmit(event) {
-        var emailstr =  document.getElementById('emailStr').value;
-        var passstr = document.getElementById('passStr').value;
-        var name = document.getElementById('name').value;
-        var role = document.getElementById('role').value;
-        var city = document.getElementById('city').value;
-     
-     
-        const url = "http://localhost:8090/api/people"
-       
-        var user = JSON.stringify({
-          "email": emailstr,
-          "name": name,
-          "role": role,
-          "password":CryptoJS.MD5(passstr).toString(),
-          "cv": " ",
-          "state": city,
-          "docType": null
-        })
-       
-        let xhttp = new XMLHttpRequest();
-        xhttp.open("POST", url);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.setRequestHeader('Access-Control-Allow-Origin','*');
-        xhttp.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, HEAD');
-        xhttp.responseType = 'text';
-        xhttp.send(user);
-     
-        xhttp.onload = ()=>{
-         console.log(xhttp.responseText);
-          }
-      }
-      render() {
-          return (
-            <div className="Register">
-                <NavbarFeatures class="p-3 mb-2 bg-dark text-white" className="NavBarMain1">
-                </NavbarFeatures>
+  validateForm() {
+    return this.state.emailstr.length > 0 && this.state.passstr.length > 0;
+  }
 
-                <form onSubmit={this.handleSubmit}>
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  };
 
-                <FormGroup controlId="name" bsSize="large">
-                    <ControlLabel>Name</ControlLabel>
-                    <FormControl
-                        autoFocus
-                         type="name"
-                        //  value={this.state.name}
-                        //  onChange={this.handleChange}
-                     />
-                </FormGroup>
-                
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email</ControlLabel>
-                    <FormControl
-                         type="emailstr"
-                        //  value={this.state.emailstr}
-                        //  onChange={this.handleChange}
-                     />
-                </FormGroup>
-                
-                <FormGroup controlId="passstr" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
-                     <FormControl
-                        // value={this.state.passstr}
-                        // onChange={this.handleChange}
-                        type="passstr"
-                    />
-                </FormGroup>
+  handleSubmit(event) {
+    var emailstr = document.getElementById("emailstr").value;
+    var passstr = document.getElementById("passstr").value;
+    var name = document.getElementById("name").value;
 
+    var role = document.getElementById("roleSelect");
+    var roleSelected = role.options[role.selectedIndex].value;
 
-                <FormGroup controlId="role" bsSize="large">
-                    <ControlLabel>Role</ControlLabel>
-                    <select class="form-control" id="roleSelect">
-                         <option>Trainee</option>
-                          <option>Trainer</option>
-                           <option>Sales</option>
-                       <option>Manager</option>
-    </select>
-                </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            // disabled={!this.validateForm()}
-            type="submit"
-          >
-            Register
-          </Button>
+    const url = "http://192.168.1.117:8090/api/people";
+
+    var user = JSON.stringify({
+      email: emailstr,
+      name: name,
+      role: roleSelected,
+      password: passstr
+    });
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhttp.setRequestHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+    );
+    xhttp.responseType = "text";
+    xhttp.send(user);
+
+    xhttp.onload = () => {
+      console.log(xhttp.responseText);
+    };
+  }
+  render() {
+    var divStyle = {
+      color: "blue",
+      margin: "auto",
+      padding: "5%",
+      width: "510px"
+    };
+
+    return (
+      <div className="Register">
+        <NavBarAdmin
+          class="p-3 mb-2 bg-dark text-white"
+          className="NavBarMain1"
+        />
+
+        <form onSubmit={this.handleSubmit}>
+          <div style={divStyle} className="registerForm">
+            <FormGroup controlId="name" bsSize="sm">
+              <ControlLabel>Name</ControlLabel>
+              <FormControl
+                type="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup controlId="emailstr" bsSize="sm">
+              <ControlLabel>Email</ControlLabel>
+              <FormControl
+                type="email"
+                value={this.state.emailstr}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup controlId="passstr" bsSize="sm">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                value={this.state.passstr}
+                onChange={this.handleChange}
+                type="password"
+              />
+            </FormGroup>
+
+            <FormGroup controlId="role" bsSize="sm">
+              <ControlLabel>Role</ControlLabel>
+              <select class="form-control" id="roleSelect">
+                <option>Trainee</option>
+                <option>Trainer</option>
+                <option>Sales</option>
+                <option>Manager</option>
+              </select>
+            </FormGroup>
+            <Button
+              block
+              bsSize="sm"
+              disabled={!this.validateForm()}
+              type="submit"
+            >
+              Register
+            </Button>
+          </div>
         </form>
       </div>
+    );
+  }
+}
 
-
-          
-          );
-      }
-    }
- 
 export default AddUser;

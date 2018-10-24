@@ -4,6 +4,7 @@ import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
 import TraineeTable from "../components/TraineeTable";
 import ProfilePage from "../containers/ProfilePage";
 import CvTable from "../components/CvTable";
+import NavBarTrainer from "../components/NavBarTrainer";
 
 class TrainerPage extends Component {
   constructor(props) {
@@ -54,10 +55,7 @@ class TrainerPage extends Component {
     var myId = "" + this.state.selectedId;
     return (
       <div className="TrainerPage">
-        <NavbarFeatures
-          class="p-3 mb-2 bg-dark text-white"
-          className="NavBarMain1"
-        />
+        <NavBarTrainer />
         <div>
           <h1 color="red" class="display-3">
             Trainer Dashboard

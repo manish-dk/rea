@@ -4,6 +4,7 @@ import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
 import TraineeTable from "../components/TraineeTable";
 import ProfilePage from "../containers/ProfilePage";
 import CvTableManager from "../components/CvTableManager";
+import NavBarTrainer from "../components/NavBarTrainer";
 
 class SoftPage extends Component {
   constructor(props) {
@@ -54,10 +55,7 @@ class SoftPage extends Component {
     var myId = "" + this.state.selectedId;
     return (
       <div className="SoftPage">
-        <NavbarFeatures
-          class="p-3 mb-2 bg-dark text-white"
-          className="NavBarMain1"
-        />
+        <NavBarTrainer />
         <div>
           <h1 color="red" class="display-3">
             Soft Skills Dashboard

@@ -13,10 +13,18 @@ import {
   DropdownItem
 } from "mdbreact";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  FormGroup,
+  FormControl,
+  ControlLabel
+} from "react-bootstrap";
 import "./LoginPage.css";
 import NavbarFeatures from "./NavBarFeatures";
 import CryptoJS from "cryptojs";
+import Background from "../components/images/bg7.jpg";
+import NavbarSimple from "../components/NavBarSimple";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -105,6 +113,22 @@ class LoginPage extends Component {
   };
 
   render() {
+    var divStyle = {
+      color: "white",
+      margin: "auto",
+      padding: "5%",
+      width: "510px"
+    };
+
+    var bgStyle = {
+      width: "100%",
+      height: "1920px",
+      backgroundImage: "url(" + Background + ")",
+      backgroundRepeat: "no-repeat",
+      // backgroundPosition: 'center',
+      backgroundSize: "stretch",
+      color: "white"
+    };
     const { people, isLoading } = this.state;
 
     const childProps = {
@@ -137,40 +161,53 @@ class LoginPage extends Component {
     }
 
     return (
-      <div className="MainPage">
-        <NavbarFeatures
+      <div style={bgStyle}>
+        <NavbarSimple
           class="p-3 mb-2 bg-dark text-white"
           className="NavBarMain1"
         />
 
-        <div className="Login">
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="email" bsSize="large">
-              <ControlLabel>Email</ControlLabel>
-              <FormControl
-                autoFocus
-                type="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
+        <h2>Login</h2>
 
-            <FormGroup controlId="password" bsSize="large">
-              <ControlLabel>Password</ControlLabel>
-              <FormControl
-                value={this.state.password}
-                onChange={this.handleChange}
-                type="password"
-              />
-            </FormGroup>
-            <Button
-              block
-              bsSize="large"
-              disabled={!this.validateForm()}
-              type="submit"
-            >
-              Login
-            </Button>
+        <div style={divStyle}>
+          <form id="loginFormId" onSubmit={this.handleSubmit}>
+            <Form>
+              <div className="form-outline md-form mt-0">
+                <FormGroup controlId="email" bsSize="sm">
+                  <ControlLabel>Email</ControlLabel>
+                  <FormControl
+                    autoFocus
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+
+                <FormGroup controlId="password" bsSize="sm">
+                  <ControlLabel>Password</ControlLabel>
+                  <FormControl
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    type="password"
+                  />
+                </FormGroup>
+
+                <Button
+                  block
+                  bsSize="large"
+                  disabled={!this.validateForm()}
+                  type="submit"
+                >
+                  Login
+                </Button>
+              </div>
+            </Form>
+
+            {/* <NavItem>
+                            <form className="form-inline md-form mt-0">
+                              <input className="form-control mr-sm-2 mb-0 text-black" type="text" placeholder="Search" aria-label="Search"/>
+                            </form>
+                          </NavItem> */}
           </form>
         </div>
       </div>

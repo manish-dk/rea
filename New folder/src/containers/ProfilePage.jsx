@@ -45,7 +45,7 @@ class ProfilePage extends Component {
                     <td width="12.5%">
                       <div>
                         <img
-                          src={require("C:/Users/Admin/Desktop/New folder/src/profilePics/Melvin.jpeg")}
+                          src={require("C:/Users/Admin/Desktop/New folder/src/profilePics/melvin.jpeg")}
                           class="img-rounded"
                           height="200px"
                           width="200px"

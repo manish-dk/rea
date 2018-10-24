@@ -5,6 +5,7 @@ import CVTable from "../containers/CVTable";
 import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
 // import UploadCV from "../components/UploadCV";
 import TraineeCVPage from "../containers/TraineeCVPage";
+import NavBarTrainee from "../components/NavBarTrainee";
 
 class TraineePage extends Component {
   constructor(props) {
@@ -20,10 +21,7 @@ class TraineePage extends Component {
     console.log(this.props.userId);
     return (
       <div className="TraineePage">
-        <NavbarFeatures
-          class="p-3 mb-2 bg-dark text-white"
-          className="NavBarMain1"
-        />
+        <NavBarTrainee />
         <div>
           <h1>Trainee Dashboard</h1>
           <Grid>
