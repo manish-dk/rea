@@ -112,6 +112,7 @@ class AddUser extends Component {
                 <option>Trainer</option>
                 <option>Sales</option>
                 <option>Manager</option>
+                <option>Soft Skills</option>
               </select>
             </FormGroup>
             <Button
