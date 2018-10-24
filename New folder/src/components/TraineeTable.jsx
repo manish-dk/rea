@@ -48,8 +48,12 @@ class TraineeTable extends Component {
             .filter(item => item.role === "trainee" || item.role === "Trainee")
             .filter(
               item =>
-                item.name.includes(this.props.searchText) ||
-                item.email.includes(this.props.searchText)
+                item.name
+                  .toLowerCase()
+                  .includes(this.props.searchText.toLowerCase()) ||
+                item.email
+                  .toLowerCase()
+                  .includes(this.props.searchText.toLowerCase())
             )
             .map(
               function(item, key) {
