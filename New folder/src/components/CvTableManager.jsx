@@ -8,7 +8,7 @@ var str;
 var strtwo;
 var strthree;
 
-class CvTable extends Component {
+class CvTableManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,7 +122,7 @@ class CvTable extends Component {
                       </a>
                     </td>
                     <td>{item.state}</td>
-                    {/* <td>
+                    <td>
                       {" "}
                       <Button
                         className="button"
@@ -137,7 +137,7 @@ class CvTable extends Component {
                           src="https://steemitimages.com/DQmWmkoSPMJ1JrGvkc5caLQyvBysuRtN8uMhHK1Ajf9BvNw/redflag.png"
                         />
                       </Button>
-                    </td> */}
+                    </td>
                   </tr>
                 </div>
               );
@@ -149,4 +149,4 @@ class CvTable extends Component {
   }
 }
 
-export default CvTable;
+export default CvTableManager;

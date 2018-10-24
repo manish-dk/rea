@@ -3,9 +3,9 @@ import NavbarFeatures from "./NavBarFeatures";
 import { Table, Grid, Row, Col, Clearfix } from "react-bootstrap";
 import TraineeTable from "../components/TraineeTable";
 import ProfilePage from "../containers/ProfilePage";
-import CvTable from "../components/CvTable";
+import CvTableSales from "../components/CvTableSales";
 
-class TrainerPage extends Component {
+class SalesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,14 +53,14 @@ class TrainerPage extends Component {
   render() {
     var myId = "" + this.state.selectedId;
     return (
-      <div className="TrainerPage">
+      <div className="SalesPage">
         <NavbarFeatures
           class="p-3 mb-2 bg-dark text-white"
           className="NavBarMain1"
         />
         <div>
           <h1 color="red" class="display-3">
-            Trainer Dashboard
+            Sales Dashboard
           </h1>
         </div>
         <Grid>
@@ -98,7 +98,7 @@ class TrainerPage extends Component {
             </Col>
             <Col xs={6} md={4}>
               <code>
-                <CvTable userId={myId} />
+                <CvTableSales userId={myId} />
               </code>
             </Col>
           </Row>
@@ -109,4 +109,4 @@ class TrainerPage extends Component {
   }
 }
 
-export default TrainerPage;
+export default SalesPage;

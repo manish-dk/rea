@@ -8,7 +8,7 @@ var str;
 var strtwo;
 var strthree;
 
-class CvTable extends Component {
+class CvTableSales extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -104,49 +104,53 @@ class CvTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.allPeople.map(
-            function(item, key) {
-              return (
-                <div>
-                  <tr key={key}>
-                    <td>
-                      <a
-                        href={
-                          "http://192.168.1.117:8090/api/" +
-                          this.props.userId +
-                          "/cv/" +
-                          item.files_id
-                        }
-                      >
-                        {item.name}
-                      </a>
-                    </td>
-                    <td>{item.state}</td>
-                    {/* <td>
-                      {" "}
-                      <Button
-                        className="button"
-                        id={"" + ++counter}
-                        name={"" + counter}
-                        onClick={this.onChangeState}
-                      >
-                        Flag
-                        <img
-                          height="20px"
-                          width="20px"
-                          src="https://steemitimages.com/DQmWmkoSPMJ1JrGvkc5caLQyvBysuRtN8uMhHK1Ajf9BvNw/redflag.png"
-                        />
-                      </Button>
-                    </td> */}
-                  </tr>
-                </div>
-              );
-            }.bind(this)
-          )}
+          {this.state.allPeople
+            .filter(
+              item => item.state == "Approved" || item.state == "approved"
+            )
+            .map(
+              function(item, key) {
+                return (
+                  <div>
+                    <tr key={key}>
+                      <td>
+                        <a
+                          href={
+                            "http://192.168.1.117:8090/api/" +
+                            this.props.userId +
+                            "/cv/" +
+                            item.files_id
+                          }
+                        >
+                          {item.name}
+                        </a>
+                      </td>
+                      <td>{item.state}</td>
+                      {/* <td>
+                        {" "}
+                        <Button
+                          className="button"
+                          id={"" + ++counter}
+                          name={"" + counter}
+                          onClick={this.onChangeState}
+                        >
+                          Flag
+                          <img
+                            height="20px"
+                            width="20px"
+                            src="https://steemitimages.com/DQmWmkoSPMJ1JrGvkc5caLQyvBysuRtN8uMhHK1Ajf9BvNw/redflag.png"
+                          />
+                        </Button>
+                      </td> */}
+                    </tr>
+                  </div>
+                );
+              }.bind(this)
+            )}
         </tbody>
       </Table>
     );
   }
 }
 
-export default CvTable;
+export default CvTableSales;

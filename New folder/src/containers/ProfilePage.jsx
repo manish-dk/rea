@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Table, Image } from "react-bootstrap";
+import { Table, Image, Button } from "react-bootstrap";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class ProfilePage extends Component {
                     <td width="12.5%">
                       <div>
                         <img
-                          src="https://files.ontario.ca/small-biz-advice.png"
+                          src={require("C:/Users/Admin/Desktop/New folder/src/profilePics/Melvin.jpeg")}
                           class="img-rounded"
                           height="200px"
                           width="200px"
@@ -60,16 +60,16 @@ class ProfilePage extends Component {
                     <td>{item.email}</td>
                   </tr>
                   <tr>
-                    <td>Preferred Role</td>
+                    <td>Preferred Role: {item.preferedRole}</td>
                   </tr>
                   <tr>
-                    <td>Preferred Location</td>
+                    <td>Preferred Location: {item.preferedLocation}</td>
                   </tr>
                   <tr>
-                    <td> Trainer Contact Details </td>
+                    <td>Current Trainer: {item.currentTrainer} </td>
                   </tr>
                   <tr>
-                    <td Edit Profile />
+                    <Button> Edit Profile</Button>
                   </tr>
                 </div>
               );
