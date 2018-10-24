@@ -29,7 +29,7 @@ class AddUser extends Component {
     });
   };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     var emailstr = document.getElementById("emailstr").value;
     var passstr = document.getElementById("passstr").value;
     var name = document.getElementById("name").value;
@@ -43,7 +43,7 @@ class AddUser extends Component {
       email: emailstr,
       name: name,
       role: roleSelected,
-      password: md5.hex_md5(passstr+"")
+      password: md5.hex_md5(passstr + "")
     });
 
     let xhttp = new XMLHttpRequest();
@@ -60,7 +60,7 @@ class AddUser extends Component {
     xhttp.onload = () => {
       console.log(xhttp.responseText);
     };
-  }
+  };
   render() {
     var divStyle = {
       color: "blue",
