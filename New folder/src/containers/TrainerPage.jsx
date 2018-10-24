@@ -101,7 +101,6 @@ class TrainerPage extends Component {
             </Col>
           </Row>
         </Grid>
-        ;
       </div>
     );
   }
